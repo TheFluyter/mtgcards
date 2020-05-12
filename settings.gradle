@@ -1,0 +1,2 @@
+rootProject.name='MTGCards'
+include ':app'
