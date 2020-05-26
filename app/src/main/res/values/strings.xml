@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">MTG Card Finder</string>
-    <string name="button">Search</string>
+    <string name="button">Enter</string>
     <string name="search_text">Search</string>
 </resources>
