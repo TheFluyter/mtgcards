@@ -5,17 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="40dp"
-    tools:context=".SearchAdapter">
-
-    <TextView
-        android:id="@+id/cardName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardImage"
-        android:textSize="18sp"/>
+    tools:context=".SearchAdapter"
+    tools:ignore="ExtraText">
 
     <ImageView
         android:id="@+id/cardImage"
@@ -23,6 +14,133 @@
         android:layout_height="340dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/cardImage" />
+
+    <TextView
+        android:id="@+id/errorMessage"
+        android:text="@string/errorMessageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/legalities"
+        android:text="@string/legalities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardImage"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/legalStandardBox"
+        android:text="@string/sampleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        android:layout_marginStart="25sp"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/legalities"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/legalStandardText"
+        android:text="@string/legalStandardText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp"
+        android:textSize="16sp"
+        android:layout_marginEnd="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/legalStandardBox"
+        app:layout_constraintStart_toEndOf="@id/legalStandardBox"
+        app:layout_constraintEnd_toStartOf="@+id/legalModernBox" />
+
+    <TextView
+        android:id="@+id/legalModernBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp"
+        android:layout_marginStart="15sp"
+        android:text="@string/sampleText"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/legalStandardText"
+        app:layout_constraintEnd_toStartOf="@+id/legalModernText"
+        app:layout_constraintStart_toEndOf="@id/legalStandardText" />
+
+    <TextView
+        android:id="@+id/legalModernText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25sp"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp"
+        android:text="@string/legalModernText"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/legalModernBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/legalModernBox" />
+
+    <TextView
+        android:id="@+id/legalPauperBox"
+        android:text="@string/sampleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_marginStart="25sp"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/legalStandardBox"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/legalPauperText"
+        android:text="@string/legalPauperText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp"
+        android:textSize="16sp"
+        android:layout_marginEnd="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/legalPauperBox"
+        app:layout_constraintEnd_toStartOf="@+id/legalCommanderBox"
+        app:layout_constraintStart_toEndOf="@+id/legalPauperBox" />
+
+    <TextView
+        android:id="@+id/legalCommanderBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp"
+        android:layout_marginStart="15sp"
+        android:text="@string/sampleText"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/legalPauperText"
+        app:layout_constraintEnd_toStartOf="@+id/legalCommanderText"
+        app:layout_constraintStart_toEndOf="@id/legalPauperText" />
+
+    <TextView
+        android:id="@+id/legalCommanderText"
+        android:text="@string/legalCommanderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25sp"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/legalCommanderBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/legalCommanderBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,4 +2,12 @@
     <string name="app_name">MTG Card Finder</string>
     <string name="button">Enter</string>
     <string name="search_text">Search</string>
+    <string name="legalities">This card is legal in:</string>
+    <string name="errorMessageText">Sample error message</string>
+    <string name="sampleText">Sample text</string>
+    <string name="legalStandardText">Standard</string>
+    <string name="legalModernText">Modern</string>
+    <string name="legalPauperText">Pauper</string>
+    <string name="legalCommanderText">Commander</string>
+    <string name="cardImage">Card Image</string>
 </resources>

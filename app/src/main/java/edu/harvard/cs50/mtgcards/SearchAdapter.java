@@ -77,6 +77,7 @@ public class SearchAdapter extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            
                             // Set the normal sized image of the card
                             JSONObject imageEntries = response.getJSONObject("image_uris");
                             String imageUrl = imageEntries.getString("normal");
