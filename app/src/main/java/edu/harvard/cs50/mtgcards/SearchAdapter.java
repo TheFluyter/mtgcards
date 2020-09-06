@@ -19,6 +19,8 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class SearchAdapter extends AppCompatActivity {
 
@@ -36,6 +38,10 @@ public class SearchAdapter extends AppCompatActivity {
     private String url;
     private RequestQueue que;
     private ImageView cardImage;
+    private ArrayList<String> formats;
+    private ArrayList<TextView> formatTextViewLegalities;
+    private ArrayList<TextView> formatTextViewNames;
+    private ArrayList<String> formatNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,36 +77,28 @@ public class SearchAdapter extends AppCompatActivity {
         legalCommanderText.setText("");
 
         getUrl();
+        createLegalityLists();
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            
+
                             // Set the normal sized image of the card
                             JSONObject imageEntries = response.getJSONObject("image_uris");
                             String imageUrl = imageEntries.getString("normal");
                             Picasso.get().load(imageUrl).into(cardImage);
 
                             // Set legalities
+                            // TODO In the future we will create CARD en LEGALITY objects
                             JSONObject legalEntries = response.getJSONObject("legalities");
 
-                            String legalText = legalEntries.getString("standard");
-                            setLegal(legalText, legalStandardBox);
-                            legalStandardText.setText(R.string.legalStandardText);
-
-                            legalText = legalEntries.getString("modern");
-                            setLegal(legalText, legalModernBox);
-                            legalModernText.setText(R.string.legalModernText);
-
-                            legalText = legalEntries.getString("pauper");
-                            setLegal(legalText, legalPauperBox);
-                            legalPauperText.setText(R.string.legalPauperText);
-
-                            legalText = legalEntries.getString("commander");
-                            setLegal(legalText, legalCommanderBox);
-                            legalCommanderText.setText(R.string.legalCommanderText);
+                            for (int i = 0; i < formats.size(); i++) {
+                                String legalText = legalEntries.getString(formats.get(i));
+                                setLegal(legalText, formatTextViewLegalities.get(i));
+                                formatTextViewNames.get(i).setText(formatNames.get(i));
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -124,6 +122,13 @@ public class SearchAdapter extends AppCompatActivity {
         url = "https://api.scryfall.com/cards/named?fuzzy=" + searchedText;
     }
 
+    private void createLegalityLists() {
+        createFormatsList();
+        createFormatTextViewLegalities();
+        createTextViewNames();
+        createFormatNames();
+    }
+
     public void setLegal(String legalInfo, TextView textView) {
         if (legalInfo.equals("legal")) {
             textView.setText("LEGAL");
@@ -134,5 +139,29 @@ public class SearchAdapter extends AppCompatActivity {
             textView.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.notLegalRed));
             textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
         }
+    }
+
+    private void createFormatsList() {
+        List<String> formatsList = Arrays.asList("standard", "modern", "pauper", "commander");
+        formats = new ArrayList<>();
+        formats.addAll(formatsList);
+    }
+
+    private void createFormatTextViewLegalities() {
+        List<TextView> formatTextViewLegalitiesList = Arrays.asList(legalStandardBox, legalModernBox, legalPauperBox, legalCommanderBox);
+        formatTextViewLegalities = new ArrayList<>();
+        formatTextViewLegalities.addAll(formatTextViewLegalitiesList);
+    }
+
+    private void createTextViewNames() {
+        List<TextView> formatTextViewNameList = Arrays.asList(legalStandardText, legalModernText, legalPauperText, legalCommanderText);
+        formatTextViewNames = new ArrayList<>();
+        formatTextViewNames.addAll(formatTextViewNameList);
+    }
+
+    private void createFormatNames() {
+        List<String> formatNameList = Arrays.asList("Standard", "Modern", "Pauper", "Commander");
+        formatNames = new ArrayList<>();
+        formatNames.addAll(formatNameList);
     }
 }
